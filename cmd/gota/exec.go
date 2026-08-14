@@ -8,7 +8,6 @@ import (
 	"runtime"
 	"strings"
 	"sync"
-	"syscall"
 )
 
 var printMu sync.Mutex
@@ -64,7 +63,7 @@ type repoTask struct {
 // prints its output prefixed with the repo name; reports failure.
 func runTask(t repoTask) bool {
 	c := buildCmd(t.cmd, t.dir, t.shellMode)
-	c.SysProcAttr = &syscall.SysProcAttr{Setsid: true}
+	detachFromTTY(c)
 	var out, errb bytes.Buffer
 	c.Stdout = &out
 	c.Stderr = &errb
