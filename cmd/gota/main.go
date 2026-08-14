@@ -9,7 +9,7 @@ import (
 	"sort"
 )
 
-const version = "0.16.8.2-go"
+const version = "0.1.0"
 
 var builtinHelp = []struct{ name, help string }{
 	{"add", "add repo(s)"},
